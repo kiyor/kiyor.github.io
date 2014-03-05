@@ -4,7 +4,7 @@
   <title><![CDATA[nothing important]]></title>
   <link href="http://kiyor.github.io/atom.xml" rel="self"/>
   <link href="http://kiyor.github.io/"/>
-  <updated>2014-03-05T22:18:51+00:00</updated>
+  <updated>2014-03-05T22:22:00+00:00</updated>
   <id>http://kiyor.github.io/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -20,17 +20,16 @@
     <id>http://kiyor.github.io/blog/2014/03/05/init-blog</id>
     <content type="html"><![CDATA[<h1 id="this-is-testing">This is testing</h1>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class=""><span class="line">#!/bin/sh
-</span><span class="line">if [[ $EUID -eq 0 ]];then
-</span><span class="line">	echo 'you are root'
-</span><span class="line">fi
-</span><span class="line">{:lang="bash"}
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
+  <div class="code"><pre>
+#!/bin/sh
+if [[ $EUID -eq 0 ]];then
+        echo 'you are root'
+fi
+{:lang=&quot;bash&quot;}
+</pre></div>
+</div>
+ </figure></notextile></div>
 
 <ul>
   <li>nothing over here</li>
