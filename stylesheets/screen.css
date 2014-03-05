@@ -1,12 +1,10 @@
 /*
-Syntax error: Undefined variable: "$code-bg".
-        on line 6 of /root/octopress/sass/custom/_styles.scss
+Syntax error: Undefined variable: "$line-nb-bg".
+        on line 25 of /root/octopress/sass/custom/_styles.scss
         from line 10 of /root/octopress/sass/screen.scss
 
-1: /root/octopress/sass/screen.scss
-
 Backtrace:
-/root/octopress/sass/custom/_styles.scss:6
+/root/octopress/sass/custom/_styles.scss:25
 /root/octopress/sass/screen.scss:10
 /usr/local/rvm/gems/ruby-2.1.1/gems/sass-3.2.14/lib/sass/script/variable.rb:49:in `_perform'
 /usr/local/rvm/gems/ruby-2.1.1/gems/sass-3.2.14/lib/sass/script/node.rb:40:in `perform'
@@ -69,4 +67,4 @@ Backtrace:
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Syntax error: Undefined variable: \"$code-bg\".\A         on line 6 of /root/octopress/sass/custom/_styles.scss\A         from line 10 of /root/octopress/sass/screen.scss\A \A 1: /root/octopress/sass/screen.scss"; }
+  content: "Syntax error: Undefined variable: \"$line-nb-bg\".\A         on line 25 of /root/octopress/sass/custom/_styles.scss\A         from line 10 of /root/octopress/sass/screen.scss"; }
