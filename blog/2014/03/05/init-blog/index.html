@@ -9,7 +9,10 @@
   <meta name="author" content="kiyor">
 
   
-  <meta name="description" content="This is testing nothing over here ">
+  <meta name="description" content="This is testing &#8220;`
+#!/bin/sh
+if [[ $EUID -eq 0 ]];then echo ‘you are root’
+fi nothing over here ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -93,6 +96,12 @@
 
 
 <div class="entry-content"><h1 id="this-is-testing">This is testing</h1>
+
+<p>&#8220;`
+#!/bin/sh
+if [[ $EUID -eq 0 ]];then
+	echo ‘you are root’
+fi</p>
 
 <ul>
   <li>nothing over here</li>
