@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | nothing important]]></title>
   <link href="http://kiyor.github.io/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://kiyor.github.io/"/>
-  <updated>2014-03-05T22:26:39+00:00</updated>
+  <updated>2014-03-05T22:27:44+00:00</updated>
   <id>http://kiyor.github.io/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -20,7 +20,7 @@
     <id>http://kiyor.github.io/blog/2014/03/05/init-blog</id>
     <content type="html"><![CDATA[<h1 id="this-is-testing">This is testing</h1>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption class='code-header' style='margin-bottom:-5px;'><span>lang=”bash” </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption class='code-header' style='margin-bottom:-5px;'><span>:lang=”bash” </span></figcaption>
  <div class="CodeRay">
   <div class="code"><pre>
 #!/bin/sh
