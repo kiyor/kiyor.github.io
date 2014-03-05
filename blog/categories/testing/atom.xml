@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | nothing important]]></title>
   <link href="http://kiyor.github.io/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://kiyor.github.io/"/>
-  <updated>2014-03-05T22:38:50+00:00</updated>
+  <updated>2014-03-05T22:43:56+00:00</updated>
   <id>http://kiyor.github.io/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -37,6 +37,20 @@ end
 </code></pre>
 
 <p><code lang="ruby">def hello</code></p>
+
+<div><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
+<a href="#n2" name="n2">2</a>
+<a href="#n3" name="n3">3</a>
+<a href="#n4" name="n4">4</a>
+</pre></td>
+  <td class="code"><pre>#!/bin/sh
+if [[ $EUID -eq 0 ]];then
+    echo 'you are root'
+fi
+</pre></td>
+</tr></table>
+</div>
 
 <ul>
   <li>nothing over here</li>
