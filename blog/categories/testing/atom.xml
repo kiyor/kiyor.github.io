@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | nothing important]]></title>
   <link href="http://kiyor.github.io/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://kiyor.github.io/"/>
-  <updated>2014-03-05T23:12:42+00:00</updated>
+  <updated>2014-03-05T23:14:18+00:00</updated>
   <id>http://kiyor.github.io/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -62,6 +62,126 @@ fi
 <ul>
   <li>nothing over here</li>
 </ul>
+
+<p>``` go
+/* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.</p>
+
+<ul>
+  <li>
+    <p>File Name : main.go</p>
+  </li>
+  <li>
+    <p>Purpose :</p>
+  </li>
+  <li>
+    <p>Creation Date : 02-26-2014</p>
+  </li>
+  <li>
+    <p>Last Modified : Wed 26 Feb 2014 01:30:21 AM UTC</p>
+  </li>
+  <li>
+    <p>Created By : Kiyor</p>
+  </li>
+</ul>
+
+<p><em>.</em>.<em>.</em>.<em>.</em>.<em>.</em>.<em>.</em>.<em>.</em>.<em>.</em>.<em>.</em>.<em>.</em>.<em>.</em>._.*/</p>
+
+<p>package main</p>
+
+<p>import (
+	“fmt”
+	“math/rand”
+	“runtime”
+	“sync”
+	“time”
+)</p>
+
+<p>type client struct {
+	conn interface{}
+	loc  *bool
+}</p>
+
+<p>func (c *client) lock() {
+	*c.loc = true
+}</p>
+
+<p>func (c *client) unlock() {
+	*c.loc = false
+}</p>
+
+<p>type worker struct {
+	sync.WaitGroup
+	counter *int
+}</p>
+
+<p>func (w *worker) add(n int) {
+	w.Add(n)
+	*w.counter += n
+}</p>
+
+<p>func (w *worker) done() {
+	*w.counter–
+	w.Done()
+}</p>
+
+<p>func initClient() client {
+	var conn interface{}
+	return client{conn, new(bool)}
+}</p>
+
+<p>func (c *client) doSomething(id, index int, w worker) {
+	r := random(5)
+	for i := 0; i &lt; random(5); i++ {
+		time.Sleep(1 * time.Second)
+	}
+	fmt.Printf(“I’m doing process[%d] in client[%d] and finish it using %d seconds, running %d\n”, index, id, r, *w.counter-1)
+	c.unlock()
+}</p>
+
+<p>func random(rg int) int {
+	return rand.Intn(rg) + 1
+}</p>
+
+<p>func getClient(clients []client) int {
+	for {
+		for k, c := range clients {
+			if !*c.loc {
+				c.lock()
+				return k
+			}
+		}
+		time.Sleep(1 * time.Millisecond)
+	}
+}</p>
+
+<p>var (
+	clients []client
+	size    = 10
+	process = 100
+)</p>
+
+<p>func init() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
+	for i := 0; i &lt; size; i++ {
+		clients = append(clients, initClient())
+	}
+}</p>
+
+<p>func main() {
+	var w worker
+	w.counter = new(int)
+	for i := 0; i &lt; process; i++ {
+		w.add(1)
+		id := getClient(clients)
+		go func(id, i int, w *worker) {
+			clients[id].doSomething(id, i, *w)
+			w.done()
+		}(id, i, &amp;w)
+	}
+	w.Wait()
+}</p>
+
+<p>```</p>
 ]]></content>
   </entry>
   
