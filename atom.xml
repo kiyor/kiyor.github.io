@@ -4,7 +4,7 @@
   <title><![CDATA[nothing important]]></title>
   <link href="http://kiyor.github.io/atom.xml" rel="self"/>
   <link href="http://kiyor.github.io/"/>
-  <updated>2014-03-05T22:43:56+00:00</updated>
+  <updated>2014-03-05T22:45:01+00:00</updated>
   <id>http://kiyor.github.io/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -51,6 +51,16 @@ fi
 </pre></td>
 </tr></table>
 </div>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$EUID</span> -eq 0 <span class="o">]]</span>;<span class="k">then</span>
+</span><span class="line"><span class="k">	</span><span class="nb">echo</span> <span class="s1">&#39;you are root&#39;</span>
+</span><span class="line"><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <ul>
   <li>nothing over here</li>
