@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://kiyor.github.io/sitemap.xml 
+Sitemap: http://io.kiyor.us/sitemap.xml 
