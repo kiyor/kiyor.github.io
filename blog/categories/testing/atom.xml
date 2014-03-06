@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | About System]]></title>
   <link href="http://io.kiyor.us/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-03-06T22:37:05+00:00</updated>
+  <updated>2014-03-06T22:37:24+00:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -24,12 +24,15 @@
 
 <h1 id="this-is-testing">This is testing</h1>
 
-<p>{% coderay %}
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="CodeRay">
+  <div class="code"><pre>
 #!/bin/sh
 if [[ $EUID -eq 0 ]];then
-	echo ‘you are root’
+        echo ‘you are root’
 fi
-{% endcoderay %}</p>
+</pre></div>
+</div>
+ </figure></notextile></div></p>
 
 <pre lang="bash"><code>	#!/bin/sh
 	if [[ $EUID -eq 0 ]];then
