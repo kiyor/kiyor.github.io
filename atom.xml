@@ -4,7 +4,7 @@
   <title><![CDATA[About System]]></title>
   <link href="http://io.kiyor.us/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-03-07T01:32:18+00:00</updated>
+  <updated>2014-03-07T01:39:33+00:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -450,6 +450,9 @@ fi
 </span><span class="line">	<span class="nx">w</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p><code>/play nyan</code>
+/play nyan</p>
 ]]></content>
   </entry>
   

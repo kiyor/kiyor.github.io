@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | About System]]></title>
   <link href="http://io.kiyor.us/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-03-07T01:32:18+00:00</updated>
+  <updated>2014-03-07T01:39:33+00:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -349,6 +349,9 @@ non codeing
 }</p>
 
 <p>```</p>
+
+<p><code>/play nyan</code>
+/play nyan</p>
 ]]></content>
   </entry>
   
