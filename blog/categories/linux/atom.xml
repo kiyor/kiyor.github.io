@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | About System]]></title>
+  <link href="http://io.kiyor.us/blog/categories/linux/atom.xml" rel="self"/>
+  <link href="http://io.kiyor.us/"/>
+  <updated>2014-03-07T17:04:15-08:00</updated>
+  <id>http://io.kiyor.us/</id>
+  <author>
+    <name><![CDATA[kiyor]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Control Different Region Player Connect Different Server]]></title>
+    <link href="http://io.kiyor.us/blog/2012/08/19/control-different-region-player-connect-different-server/"/>
+    <updated>2012-08-19T17:58:43-07:00</updated>
+    <id>http://io.kiyor.us/blog/2012/08/19/control-different-region-player-connect-different-server</id>
+    <content type="html"><![CDATA[<p>Recently I wanted to upgrade my Minecraft player. I plan to use different server for different player. I’ve tried to check how does my home’s DD-WRT works on port forwarding. And I got the result. I could use port forwarding in iptables control player source ip connect different server.</p>
+
+<p>So this is my iptables rule</p>
+
+<p>```
+Chain INPUT (policy ACCEPT)
+target prot opt source destination
+ACCEPT 0 – 0.0.0.0/0 0.0.0.0/0 state RELATED,ESTABLISHED
+DROP udp – 0.0.0.0/0 0.0.0.0/0 udp dpt:520
+DROP udp – 0.0.0.0/0 0.0.0.0/0 udp dpt:520
+ACCEPT udp – 0.0.0.0/0 0.0.0.0/0 udp dpt:520
+logaccept tcp – 0.0.0.0/0 192.168.1.1 tcp dpt:23
+DROP icmp – 0.0.0.0/0 0.0.0.0/0
+DROP 2 – 0.0.0.0/0 0.0.0.0/0
+ACCEPT 0 – 0.0.0.0/0 0.0.0.0/0 state NEW
+logaccept 0 – 0.0.0.0/0 0.0.0.0/0 state NEW
+DROP 0 – 0.0.0.0/0 0.0.0.0/0
+Chain FORWARD (policy ACCEPT)
+target prot opt source destination
+ACCEPT 47 – 192.168.1.0/24 0.0.0.0/0
+ACCEPT tcp – 192.168.1.0/24 0.0.0.0/0 tcp dpt:1723
+ACCEPT 0 – 0.0.0.0/0 0.0.0.0/0
+TCPMSS tcp – 0.0.0.0/0 0.0.0.0/0 tcp flags:0x06/0x02 TCPMSS clamp to PMTU
+lan2wan 0 – 0.0.0.0/0 0.0.0.0/0
+ACCEPT 0 – 0.0.0.0/0 0.0.0.0/0 state RELATED,ESTABLISHED
+ACCEPT tcp – 0.0.0.0/0 192.168.1.131 tcp dpt:25565
+ACCEPT udp – 0.0.0.0/0 192.168.1.131 udp dpt:25565
+ACCEPT tcp – 0.0.0.0/0 192.168.1.131 tcp dpt:80
+ACCEPT udp – 0.0.0.0/0 192.168.1.131 udp dpt:80
+ACCEPT tcp – 0.0.0.0/0 192.168.1.131 tcp dpt:443
+ACCEPT udp – 0.0.0.0/0 192.168.1.131 udp dpt:443
+ACCEPT tcp – 0.0.0.0/0 192.168.1.131 tcp dpt:548
+ACCEPT udp – 0.0.0.0/0 192.168.1.131 udp dpt:548
+ACCEPT tcp – 0.0.0.0/0 192.168.1.1 tcp dpt:80
+ACCEPT udp – 0.0.0.0/0 192.168.1.1 udp dpt:80
+ACCEPT tcp – 0.0.0.0/0 192.168.1.1 tcp dpt:443
+ACCEPT udp – 0.0.0.0/0 192.168.1.1 udp dpt:443
+ACCEPT tcp – 0.0.0.0/0 192.168.1.131 tcp dpt:22
+ACCEPT udp – 0.0.0.0/0 192.168.1.131 udp dpt:22
+ACCEPT tcp – 0.0.0.0/0 192.168.1.133 tcp dpt:51413
+ACCEPT udp – 0.0.0.0/0 192.168.1.133 udp dpt:51413
+ACCEPT tcp – 0.0.0.0/0 192.168.1.133 tcp dpt:9091
+ACCEPT udp – 0.0.0.0/0 192.168.1.133 udp dpt:9091
+ACCEPT tcp – 0.0.0.0/0 192.168.1.131 tcp dpt:8123
+ACCEPT udp – 0.0.0.0/0 192.168.1.131 udp dpt:8123
+ACCEPT tcp – 0.0.0.0/0 192.168.1.141 tcp dpt:6699
+ACCEPT udp – 0.0.0.0/0 192.168.1.141 udp dpt:6699
+TRIGGER 0 – 0.0.0.0/0 0.0.0.0/0 TRIGGER type:in match:0 relate:0
+trigger_out 0 – 0.0.0.0/0 0.0.0.0/0
+ACCEPT 0 – 0.0.0.0/0 0.0.0.0/0 state NEW
+DROP 0 – 0.0.0.0/0 0.0.0.0/0
+Chain OUTPUT (policy ACCEPT)
+target prot opt source destination
+Chain advgrp<em>1 (0 references)
+target prot opt source destination
+Chain advgrp</em>10 (0 references)
+target prot opt source destination
+Chain advgrp<em>2 (0 references)
+target prot opt source destination
+Chain advgrp</em>3 (0 references)
+target prot opt source destination
+Chain advgrp<em>4 (0 references)
+target prot opt source destination
+Chain advgrp</em>5 (0 references)
+target prot opt source destination
+Chain advgrp<em>6 (0 references)
+target prot opt source destination
+Chain advgrp</em>7 (0 references)
+target prot opt source destination
+Chain advgrp<em>8 (0 references)
+target prot opt source destination
+Chain advgrp</em>9 (0 references)
+target prot opt source destination
+Chain grp<em>1 (0 references)
+target prot opt source destination
+Chain grp</em>10 (0 references)
+target prot opt source destination
+Chain grp<em>2 (0 references)
+target prot opt source destination
+Chain grp</em>3 (0 references)
+target prot opt source destination
+Chain grp<em>4 (0 references)
+target prot opt source destination
+Chain grp</em>5 (0 references)
+target prot opt source destination
+Chain grp<em>6 (0 references)
+target prot opt source destination
+Chain grp</em>7 (0 references)
+target prot opt source destination
+Chain grp<em>8 (0 references)
+target prot opt source destination
+Chain grp</em>9 (0 references)
+target prot opt source destination
+Chain lan2wan (1 references)
+target prot opt source destination
+Chain logaccept (2 references)
+target prot opt source destination
+ACCEPT 0 – 0.0.0.0/0 0.0.0.0/0
+Chain logdrop (0 references)
+target prot opt source destination
+DROP 0 – 0.0.0.0/0 0.0.0.0/0
+Chain logreject (0 references)
+target prot opt source destination
+REJECT tcp – 0.0.0.0/0 0.0.0.0/0 tcp reject-with tcp-reset
+Chain trigger_out (1 references)
+target prot opt source destination</p>
+
+<p>```</p>
+
+<p>The only useful in this table is FORWARD</p>
+
+<p>The rule is looks like that</p>
+
+<p>``` bash</p>
+
+<p>iptables -t nat -I PREROUTING -p tcp -d 192.168.1.1 –dport 10001 -j DNAT –to 192.168.1.131:10002
+iptables -I FORWARD -p tcp -d 192.168.1.131 –dport 10002 -j ACCEPT</p>
+
+<p>```</p>
+
+<p>Test Success.</p>
+
+<p>The script</p>
+
+<p>``` bash</p>
+
+<h1 id="binsh">!/bin/sh</h1>
+<p>iptables -t nat -I PREROUTING -p tcp -s $1 -d $2 –dport $3 -j DNAT –to $2:$4
+iptables -I FORWARD -p tcp -s $1 -d $2 –dport $3 -j ACCEPT</p>
+
+<p>```</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>$1:</th>
+      <th>source ip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$2:</td>
+      <td>server ip</td>
+    </tr>
+    <tr>
+      <td>$3:</td>
+      <td>service port</td>
+    </tr>
+    <tr>
+      <td>$4:</td>
+      <td>forward port</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So Now I can make my Chinese player play my Chinese server and US player play US server. The server could automatic choose server depends on region.</p>
+]]></content>
+  </entry>
+  
+</feed>

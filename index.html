@@ -548,6 +548,297 @@ fi
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/08/19/control-different-region-player-connect-different-server/">Control Different Region Player Connect Different Server</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-19T17:58:43-07:00" pubdate data-updated="true">Aug 19<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/08/19/control-different-region-player-connect-different-server/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Recently I wanted to upgrade my Minecraft player. I plan to use different server for different player. I’ve tried to check how does my home’s DD-WRT works on port forwarding. And I got the result. I could use port forwarding in iptables control player source ip connect different server.</p>
+
+<p>So this is my iptables rule</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+<span class="line-number">28</span>
+<span class="line-number">29</span>
+<span class="line-number">30</span>
+<span class="line-number">31</span>
+<span class="line-number">32</span>
+<span class="line-number">33</span>
+<span class="line-number">34</span>
+<span class="line-number">35</span>
+<span class="line-number">36</span>
+<span class="line-number">37</span>
+<span class="line-number">38</span>
+<span class="line-number">39</span>
+<span class="line-number">40</span>
+<span class="line-number">41</span>
+<span class="line-number">42</span>
+<span class="line-number">43</span>
+<span class="line-number">44</span>
+<span class="line-number">45</span>
+<span class="line-number">46</span>
+<span class="line-number">47</span>
+<span class="line-number">48</span>
+<span class="line-number">49</span>
+<span class="line-number">50</span>
+<span class="line-number">51</span>
+<span class="line-number">52</span>
+<span class="line-number">53</span>
+<span class="line-number">54</span>
+<span class="line-number">55</span>
+<span class="line-number">56</span>
+<span class="line-number">57</span>
+<span class="line-number">58</span>
+<span class="line-number">59</span>
+<span class="line-number">60</span>
+<span class="line-number">61</span>
+<span class="line-number">62</span>
+<span class="line-number">63</span>
+<span class="line-number">64</span>
+<span class="line-number">65</span>
+<span class="line-number">66</span>
+<span class="line-number">67</span>
+<span class="line-number">68</span>
+<span class="line-number">69</span>
+<span class="line-number">70</span>
+<span class="line-number">71</span>
+<span class="line-number">72</span>
+<span class="line-number">73</span>
+<span class="line-number">74</span>
+<span class="line-number">75</span>
+<span class="line-number">76</span>
+<span class="line-number">77</span>
+<span class="line-number">78</span>
+<span class="line-number">79</span>
+<span class="line-number">80</span>
+<span class="line-number">81</span>
+<span class="line-number">82</span>
+<span class="line-number">83</span>
+<span class="line-number">84</span>
+<span class="line-number">85</span>
+<span class="line-number">86</span>
+<span class="line-number">87</span>
+<span class="line-number">88</span>
+<span class="line-number">89</span>
+<span class="line-number">90</span>
+<span class="line-number">91</span>
+<span class="line-number">92</span>
+<span class="line-number">93</span>
+<span class="line-number">94</span>
+<span class="line-number">95</span>
+<span class="line-number">96</span>
+<span class="line-number">97</span>
+<span class="line-number">98</span>
+<span class="line-number">99</span>
+<span class="line-number">100</span>
+<span class="line-number">101</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">Chain INPUT (policy ACCEPT)
+</span><span class="line">target prot opt source destination
+</span><span class="line">ACCEPT 0 -- 0.0.0.0/0 0.0.0.0/0 state RELATED,ESTABLISHED
+</span><span class="line">DROP udp -- 0.0.0.0/0 0.0.0.0/0 udp dpt:520
+</span><span class="line">DROP udp -- 0.0.0.0/0 0.0.0.0/0 udp dpt:520
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 0.0.0.0/0 udp dpt:520
+</span><span class="line">logaccept tcp -- 0.0.0.0/0 192.168.1.1 tcp dpt:23
+</span><span class="line">DROP icmp -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">DROP 2 -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">ACCEPT 0 -- 0.0.0.0/0 0.0.0.0/0 state NEW
+</span><span class="line">logaccept 0 -- 0.0.0.0/0 0.0.0.0/0 state NEW
+</span><span class="line">DROP 0 -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">Chain FORWARD (policy ACCEPT)
+</span><span class="line">target prot opt source destination
+</span><span class="line">ACCEPT 47 -- 192.168.1.0/24 0.0.0.0/0
+</span><span class="line">ACCEPT tcp -- 192.168.1.0/24 0.0.0.0/0 tcp dpt:1723
+</span><span class="line">ACCEPT 0 -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">TCPMSS tcp -- 0.0.0.0/0 0.0.0.0/0 tcp flags:0x06/0x02 TCPMSS clamp to PMTU
+</span><span class="line">lan2wan 0 -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">ACCEPT 0 -- 0.0.0.0/0 0.0.0.0/0 state RELATED,ESTABLISHED
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.131 tcp dpt:25565
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.131 udp dpt:25565
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.131 tcp dpt:80
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.131 udp dpt:80
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.131 tcp dpt:443
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.131 udp dpt:443
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.131 tcp dpt:548
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.131 udp dpt:548
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.1 tcp dpt:80
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.1 udp dpt:80
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.1 tcp dpt:443
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.1 udp dpt:443
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.131 tcp dpt:22
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.131 udp dpt:22
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.133 tcp dpt:51413
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.133 udp dpt:51413
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.133 tcp dpt:9091
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.133 udp dpt:9091
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.131 tcp dpt:8123
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.131 udp dpt:8123
+</span><span class="line">ACCEPT tcp -- 0.0.0.0/0 192.168.1.141 tcp dpt:6699
+</span><span class="line">ACCEPT udp -- 0.0.0.0/0 192.168.1.141 udp dpt:6699
+</span><span class="line">TRIGGER 0 -- 0.0.0.0/0 0.0.0.0/0 TRIGGER type:in match:0 relate:0
+</span><span class="line">trigger_out 0 -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">ACCEPT 0 -- 0.0.0.0/0 0.0.0.0/0 state NEW
+</span><span class="line">DROP 0 -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">Chain OUTPUT (policy ACCEPT)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_1 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_10 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_2 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_3 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_4 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_5 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_6 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_7 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_8 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain advgrp_9 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_1 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_10 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_2 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_3 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_4 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_5 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_6 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_7 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_8 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain grp_9 (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain lan2wan (1 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">Chain logaccept (2 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">ACCEPT 0 -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">Chain logdrop (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">DROP 0 -- 0.0.0.0/0 0.0.0.0/0
+</span><span class="line">Chain logreject (0 references)
+</span><span class="line">target prot opt source destination
+</span><span class="line">REJECT tcp -- 0.0.0.0/0 0.0.0.0/0 tcp reject-with tcp-reset
+</span><span class="line">Chain trigger_out (1 references)
+</span><span class="line">target prot opt source destination
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>The only useful in this table is FORWARD</p>
+
+<p>The rule is looks like that</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">iptables -t nat -I PREROUTING -p tcp -d 192.168.1.1 --dport 10001 -j DNAT --to 192.168.1.131:10002
+</span><span class="line">iptables -I FORWARD -p tcp -d 192.168.1.131 --dport 10002 -j ACCEPT
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Test Success.</p>
+
+<p>The script</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line">iptables -t nat -I PREROUTING -p tcp -s <span class="nv">$1</span> -d <span class="nv">$2</span> --dport <span class="nv">$3</span> -j DNAT --to <span class="nv">$2</span>:<span class="nv">$4</span>
+</span><span class="line">iptables -I FORWARD -p tcp -s <span class="nv">$1</span> -d <span class="nv">$2</span> --dport <span class="nv">$3</span> -j ACCEPT
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>$1:</th>
+      <th>source ip</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>$2:</td>
+      <td>server ip</td>
+    </tr>
+    <tr>
+      <td>$3:</td>
+      <td>service port</td>
+    </tr>
+    <tr>
+      <td>$4:</td>
+      <td>forward port</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>So Now I can make my Chinese player play my Chinese server and US player play US server. The server could automatic choose server depends on region.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/08/07/how-to-use-ramdisk-in-your-mac/">How to Use Ramdisk in Your Mac</a></h1>
     
     
@@ -776,6 +1067,10 @@ So apps I use to make me think Mac is awesome.</p>
     
       <li class="post">
         <a href="/blog/2014/03/05/init-blog/">init blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/19/control-different-region-player-connect-different-server/">Control Different Region Player Connect Different Server</a>
       </li>
     
       <li class="post">
