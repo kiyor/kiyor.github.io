@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Testing | About System]]></title>
   <link href="http://io.kiyor.us/blog/categories/testing/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-03-07T01:39:33+00:00</updated>
+  <updated>2014-03-07T16:54:29-08:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -16,7 +16,7 @@
   <entry>
     <title type="html"><![CDATA[init blog]]></title>
     <link href="http://io.kiyor.us/blog/2014/03/05/init-blog/"/>
-    <updated>2014-03-05T20:38:53+00:00</updated>
+    <updated>2014-03-05T12:38:53-08:00</updated>
     <id>http://io.kiyor.us/blog/2014/03/05/init-blog</id>
     <content type="html"><![CDATA[<ul id="markdown-toc">
   <li><a href="#this-is-testing">This is testing</a></li>
@@ -352,6 +352,8 @@ non codeing
 
 <p><code>/play nyan</code>
 /play nyan</p>
+
+<script type="math/tex; mode=display">a^2 + b^2 = c^2</script>
 ]]></content>
   </entry>
   

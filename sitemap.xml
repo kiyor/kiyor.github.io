@@ -1,23 +1,31 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://io.kiyor.us/blog/2012/08/07/share-my-macs-apps-list/</loc>
+        <lastmod>2014-03-07T15:58:41-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://io.kiyor.us/blog/2012/08/07/how-to-use-ramdisk-in-your-mac/</loc>
+        <lastmod>2014-03-07T16:44:44-08:00</lastmod>
+    </url>
+    <url>
         <loc>http://io.kiyor.us/blog/2014/03/05/init-blog/</loc>
-        <lastmod>2014-03-07T01:36:25+00:00</lastmod>
+        <lastmod>2014-03-07T13:32:56-08:00</lastmod>
     </url>
     <url>
         <loc>http://io.kiyor.us/blog/archives/</loc>
-        <lastmod>2014-03-07T01:36:25+00:00</lastmod>
+        <lastmod>2014-03-07T16:44:44-08:00</lastmod>
     </url>
     <url>
         <loc>http://io.kiyor.us/</loc>
-        <lastmod>2014-03-07T01:36:25+00:00</lastmod>
-    </url>
-    <url>
-        <loc>http://io.kiyor.us/robots.txt</loc>
-        <lastmod>2014-03-06T19:46:18+00:00</lastmod>
+        <lastmod>2014-03-07T16:44:44-08:00</lastmod>
     </url>
     <url>
         <loc>http://io.kiyor.us/octopress/</loc>
-        <lastmod>2014-03-06T22:38:59+00:00</lastmod>
+        <lastmod>2014-03-06T14:38:59-08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://io.kiyor.us/robots.txt</loc>
+        <lastmod>2014-03-06T11:46:18-08:00</lastmod>
     </url>
 </urlset>

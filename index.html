@@ -30,8 +30,7 @@ fi #!/bin/sh if [[ $EUID -eq 0 ]];then echo 'you are root' &hellip;">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 
@@ -91,7 +90,7 @@ fi #!/bin/sh if [[ $EUID -eq 0 ]];then echo 'you are root' &hellip;">
   
 
 
-<time datetime="2014-03-05T20:38:53+00:00" pubdate data-updated="true">Mar 5<span>th</span>, 2014</time>
+<time datetime="2014-03-05T12:38:53-08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2014</time>
         
          | <a href="/blog/2014/03/05/init-blog/#disqus_thread">Comments</a>
         
@@ -535,6 +534,227 @@ fi
 
 <p><code>/play nyan</code>
 /play nyan</p>
+
+<script type="math/tex; mode=display">a^2 + b^2 = c^2</script>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/07/how-to-use-ramdisk-in-your-mac/">How to Use Ramdisk in Your Mac</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-07T17:01:15-07:00" pubdate data-updated="true">Aug 7<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/08/07/how-to-use-ramdisk-in-your-mac/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>You can simply use command to create a ramdisk.</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">diskutil erasevolume HFS+ <span class="s2">&quot;ramdisk&quot;</span> <span class="sb">`</span>hdiutil attach -nomount ram://512000<span class="sb">`</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>This is 250 MB ramdisk, you can change 512000 to change the volume of the ramdisk.
+If you want to use ramdisk for your safari cache
+You can close the safari and run these</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">rm -rf ~/Library/Caches/com.apple.Safari
+</span><span class="line">mkdir /Volumes/ramdisk/com.apple.Safari
+</span><span class="line">ln -s /Volumes/ramdisk/com.apple.Safari/ ~/Library/Caches/com.apple.Safari
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>Another app’s caches you can just modify path form the code above.</p>
+
+<p>If you need it runs automatically when you reboot.
+Create a script like ramedisk.sh and <code>chmod u+x ramdisk.sh</code></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/sh</span>
+</span><span class="line"><span class="k">if</span> <span class="o">[</span> ! -d <span class="s2">&quot;/Volumes/ramdisk&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line"><span class="k">	</span>diskutil erasevolume HFS+ <span class="s2">&quot;ramdisk&quot;</span> <span class="sb">`</span>hdiutil attach -nomount ram://512000<span class="sb">`</span>
+</span><span class="line"><span class="k">fi</span>
+</span><span class="line"><span class="k">if</span> <span class="o">[</span> ! -d <span class="s2">&quot;/Volumes/ramdisk/com.apple.Safari&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line"><span class="k">	</span>rm -rf ~/Library/Caches/com.apple.Safari
+</span><span class="line">	mkdir /Volumes/ramdisk/com.apple.Safari
+</span><span class="line">	ln -s /Volumes/ramdisk/com.apple.Safari/ ~/Library/Caches/com.apple.Safari
+</span><span class="line"><span class="k">fi</span>
+</span><span class="line"><span class="k">if</span> <span class="o">[</span> ! -d <span class="s2">&quot;/Volumes/ramdisk/Google&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line"><span class="k">	</span>rm -rf ~/Library/Caches/Google
+</span><span class="line">	mkdir /Volumes/ramdisk/Google
+</span><span class="line">	ln -s /Volumes/ramdisk/Google/ ~/Library/Caches/Google
+</span><span class="line"><span class="k">fi</span>
+</span><span class="line"><span class="k"> </span>
+</span><span class="line"><span class="k">if</span> <span class="o">[</span> -d <span class="s2">&quot;/Volumes/ramdisk/com.apple.Safari&quot;</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">[</span> -d <span class="s2">&quot;/Volumes/ramdisk/Google&quot;</span> <span class="o">]</span>; <span class="k">then</span>
+</span><span class="line"><span class="k">	</span><span class="nb">echo</span> <span class="s2">&quot;Ramdisk is enabled!&quot;</span>
+</span><span class="line"><span class="k">else</span>
+</span><span class="line"><span class="k">	</span><span class="nb">echo</span> <span class="s2">&quot;Error&quot;</span>
+</span><span class="line"><span class="k">fi</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>rc.local file might not work, Mac looks not load rc.local, what I do is append these to terminal login sheel and run terminal when Mac start. You need add a check like <code>if [[ $(tty) = /dev/ttys001 ]]; then ~/ramdisk.sh; fi;</code></p>
+
+<p>You can also modify this if you need.
+More information
+Testing software: Blackmagic Disk Speed Test</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>10 Bit YUV 4:2:2 PAL</th>
+      <th>Default SSD</th>
+      <th>Default Ramdisk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Disk Write Speed MB/s</td>
+      <td>180</td>
+      <td>800</td>
+    </tr>
+    <tr>
+      <td>Disk Read Speed MB/s</td>
+      <td>210</td>
+      <td>800</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/07/share-my-macs-apps-list/">Share My Mac’s Apps List</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-07T16:54:11-07:00" pubdate data-updated="true">Aug 7<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/08/07/share-my-macs-apps-list/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Last year I bought 2011 Mac Air for learning Objective-C. Now I’m using OSX for my main environment.
+Most of the people who never use OSX thought “Mac is over prices, only the hardware is good and not support a lot of apps”.
+But most of Mac users love Mac is because the OS.
+So apps I use to make me think Mac is awesome.</p>
+
+<h3 id="st-xcode">1st: Xcode</h3>
+<p>Without Xcode, your Mac is not completed. Not because you need programing something, just because you really need command line tools from Xcode. Regular command line is not enough to access some awesome command. After you install the Xcode and download the command line tools, your Mac is ready to go.</p>
+
+<h3 id="nd-terminal">2nd: Terminal</h3>
+<p>This topic will be very huge. Terminal could be use everywhere. The most important things on Terminal is because they can easily edit root file without any problem. Also you can ssh via terminal. Windows use putty, that’s not good. Terminal have great GUI, not only help you do your works but also make the works look amazing.</p>
+
+<h3 id="rd-macports">3rd: MacPorts</h3>
+<p>If you are familiar with Linux, you must know rpm and apt-get. port is similar like these, but port let you download the source and compile by yourself. The package might be install slowly and cpu will almost 100%. Whatever you could use a lot of Linux 3rd party package in your Mac like nmap, watch and so on.</p>
+
+<h3 id="th-textmate">4th: TextMate</h3>
+<p>TextMate is an awesome text editor in Mac. It could use a lot of plugin and even compile your code without other apps. What I have problem is I cannot change default table size as space, and also sometimes auto tab will annoying you.</p>
+
+<h3 id="th-macvim">5th: MacVim</h3>
+<p>Powerful, not not for newbie developer. I use MacVim for view the php or custom stuff. You could do whatever in Vim, same as MacVim. If you are developer, you should know how to use keyboard control the cursor at least.</p>
+
+<h3 id="th-bbedit">6th: BBedit</h3>
+<p>Good text editor for project diff and support real-time word suggestion. I purchase this app only for these two reason. OK, one more reason: it is available in App Store.</p>
+
+<h3 id="th-coda--coda-2">7th: Coda / Coda 2</h3>
+<p>If you are a web developer, You must have this app. This is the best php writer.</p>
+
+<h3 id="th-sequel-pro">8th: Sequel Pro</h3>
+<p>FREE MySql app. The GUI is sample, easy for use. If you should manage mysql database data, you must have it.</p>
+
+<h3 id="th-navicat">9th: Navicat</h3>
+<p>This app have a lot of version. You can try Navicat Premium first, and then try Navicat Premium Essentials. This app is best for SQL data structural; not very good for data editing.</p>
+
+<h3 id="cyberduck">10: CyberDuck</h3>
+<p>FREE / PAY ftp / sftp kind of app. This app is enough if you just use ftp for some time.</p>
+
+<h3 id="transmit">11: Transmit</h3>
+<p>Best ftp / sftp kind of app. The only thing is it could not zip the file by GUI. The GUI of the app is amazing.</p>
+
+<h3 id="evernote">12: Evernote</h3>
+<p>Good app for note, sync with all your device. Only poor is it is not stable when you offline.</p>
+
+<h3 id="dropbox">13: Dropbox</h3>
+<p>I don’t wanna say anything, if you don’t have account just click me.</p>
+
+<h3 id="vmware">14: VMware</h3>
+<p>If you will use Linux or Windows for some reason, you must have this one. It cost money but more like a product.</p>
+
+<h3 id="virtualbox">15: VirtualBox</h3>
+<p>FREE but not very good for GUI access. I think VirtualBox is best for virtual a server. You can modify more complex than VMware.</p>
+
+<h3 id="github">16: GitHub</h3>
+<p>If you have source code in your Mac, please use it to control it. It reduce your madness.</p>
 </div>
   
   
@@ -556,6 +776,14 @@ fi
     
       <li class="post">
         <a href="/blog/2014/03/05/init-blog/">init blog</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/07/how-to-use-ramdisk-in-your-mac/">How to Use Ramdisk in Your Mac</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/07/share-my-macs-apps-list/">Share my Mac’s Apps List</a>
       </li>
     
   </ul>
