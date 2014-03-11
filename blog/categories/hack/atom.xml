@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Hack | About System]]></title>
+  <link href="http://io.kiyor.us/blog/categories/hack/atom.xml" rel="self"/>
+  <link href="http://io.kiyor.us/"/>
+  <updated>2014-03-11T12:35:51-07:00</updated>
+  <id>http://io.kiyor.us/</id>
+  <author>
+    <name><![CDATA[kiyor]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Cracked a Japanese iOS Online game...]]></title>
+    <link href="http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot/"/>
+    <updated>2012-11-03T12:15:24-07:00</updated>
+    <id>http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>These day I was playing a new iOS game named Road to Dragons, ロード・トゥ・ドラゴン.</p>
+
+<p>Analysis the file system found all the cache data store form a plist file which is in <code>/Library/Preferences/jp.co.acquire.RTD.plist</code></p>
+
+<p>In my experience this kind of game will connect to server when out of battle. It will use local calculator to calculate the battle result. So it could be cracked during the battle.</p>
+
+<p>I found the plist file contain a line like <code>LOGINBONUS_PARAM</code></p>
+
+<p>``` json</p>
+
+<p>{“m_BonusLife”:0,”m_BonusAttack”:0,”m_BonusRecovery”:0,”m_BonusEvoPoint”:0,”m_BonusSoulPoint”:0,”m_BonusCriticalRate”:0,”m_BonusDropRate”:0,”m_BonusQuestMoney”:0,”m_BonusQuestExp”:0,”m_BonusQuestFriendPoint”:0}</p>
+
+<p>```</p>
+
+<p>That’s a strange line in this mass file, so I change all 0 to 100000 and try to get all the bonus.</p>
+
+<p>It worked…So this game company use client and clean text (Ok, only Xcode can open this plist file) to calculate the battle and even it is multiplication…</p>
+
+<p>Ok…That’s my first time to crack a online game…Maybe I will try more later…</p>
+
+<p><img src="http://kiyor.us/wp-content/uploads/2012/11/IMG_9087.png" alt="" /></p>
+
+<h3 id="update">Update</h3>
+<p>Pets soul could be changed too…</p>
+
+<p>Edit MDBS30 and change quest’s reward_soul value…</p>
+
+<p>What a suck game!</p>
+]]></content>
+  </entry>
+  
+</feed>

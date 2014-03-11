@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | About System]]></title>
   <link href="http://io.kiyor.us/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-03-07T17:05:31-08:00</updated>
+  <updated>2014-03-11T12:35:51-07:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Force local user use proxy]]></title>
+    <link href="http://io.kiyor.us/blog/2013/01/19/force-local-user-use-proxy/"/>
+    <updated>2013-01-19T11:27:38-08:00</updated>
+    <id>http://io.kiyor.us/blog/2013/01/19/force-local-user-use-proxy</id>
+    <content type="html"><![CDATA[<p>Setup local squid.conf with <code>http_port 45678 transparent</code></p>
+
+<p>ssh to your DD-WRT router and run</p>
+
+<p>``` bash</p>
+
+<p>iptables -I FORWARD -p tcp -d 192.168.1.2 –dport 45678 -j ACCEPT</p>
+
+<p>```</p>
+
+<p>After accept local server forward make a script like ensquid.sh</p>
+
+<p>``` bash</p>
+
+<h1 id="binsh">!/bin/sh</h1>
+<p>iptables -t nat -I PREROUTING -p tcp -s $1 –dport 80 -j DNAT –to 192.168.1.2:45678</p>
+
+<p>```</p>
+
+<p>add exec privilege and run</p>
+
+<p>``` bash</p>
+
+<p>chmod u+x ensquid.sh
+./ensquid.sh 192.168.1.x</p>
+
+<p>```</p>
+
+<h3 id="why-i-do-that">Why I do that:</h3>
+<ul>
+  <li>Sucker game console not support use proxy everywhere, like WiiU cannot use proxy on Nico App</li>
+  <li>I have two layer proxy setup for JP website. And ad deny feature on my proxy. Why not using it!</li>
+</ul>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Control Different Region Player Connect Different Server]]></title>

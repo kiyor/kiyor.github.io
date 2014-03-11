@@ -4,7 +4,7 @@
   <title><![CDATA[About System]]></title>
   <link href="http://io.kiyor.us/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-03-07T17:05:31-08:00</updated>
+  <updated>2014-03-11T12:35:51-07:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -14,447 +14,73 @@
 
   
   <entry>
-    <title type="html"><![CDATA[init blog]]></title>
-    <link href="http://io.kiyor.us/blog/2014/03/05/init-blog/"/>
-    <updated>2014-03-05T12:38:53-08:00</updated>
-    <id>http://io.kiyor.us/blog/2014/03/05/init-blog</id>
-    <content type="html"><![CDATA[<ul id="markdown-toc">
-  <li><a href="#this-is-testing">This is testing</a></li>
-</ul>
+    <title type="html"><![CDATA[Force local user use proxy]]></title>
+    <link href="http://io.kiyor.us/blog/2013/01/19/force-local-user-use-proxy/"/>
+    <updated>2013-01-19T11:27:38-08:00</updated>
+    <id>http://io.kiyor.us/blog/2013/01/19/force-local-user-use-proxy</id>
+    <content type="html"><![CDATA[<p>Setup local squid.conf with <code>http_port 45678 transparent</code></p>
 
-<h1 id="this-is-testing">This is testing</h1>
+<p>ssh to your DD-WRT router and run</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="CodeRay">
-  <div class="code"><pre>
-#!/bin/sh
-if [[ $EUID -eq 0 ]];then
-        echo 'you are root'
-fi
-</pre></div>
-</div>
- </figure></notextile></div>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">iptables -I FORWARD -p tcp -d 192.168.1.2 –dport 45678 -j ACCEPT
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<pre lang="bash"><code>	#!/bin/sh
-	if [[ $EUID -eq 0 ]];then
-		echo 'you are root'
-	fi
-</code></pre>
-
-<p><code lang="ruby">def hello</code></p>
-
-<div><table class="CodeRay"><tr>
-  <td class="line-numbers"><pre><a href="#n1" name="n1">1</a>
-<a href="#n2" name="n2">2</a>
-<a href="#n3" name="n3">3</a>
-<a href="#n4" name="n4">4</a>
-</pre></td>
-  <td class="code"><pre>#!/bin/sh
-if [[ $EUID -eq 0 ]];then
-    echo 'you are root'
-fi
-</pre></td>
-</tr></table>
-</div>
+<p>After accept local server forward make a script like ensquid.sh</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
 </pre></td><td class="code"><pre><code class="bash"><span class="line"><span class="c">#!/bin/sh</span>
-</span><span class="line"><span class="k">if</span> <span class="o">[[</span> <span class="nv">$EUID</span> -eq 0 <span class="o">]]</span>;<span class="k">then</span>
-</span><span class="line"><span class="k">	</span><span class="nb">echo</span> <span class="s1">&#39;you are root&#39;</span>
-</span><span class="line"><span class="k">fi</span>
+</span><span class="line">iptables -t nat -I PREROUTING -p tcp -s <span class="nv">$1</span> –dport 80 -j DNAT –to 192.168.1.2:45678
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<ul>
-  <li>nothing over here</li>
-</ul>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="bash"><span class="line">non codeing
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<ul>
-  <li>table testing</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>title1</th>
-      <th>title2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>value1</td>
-      <td>value2</td>
-    </tr>
-    <tr>
-      <td>value3</td>
-      <td>value4</td>
-    </tr>
-  </tbody>
-</table>
-
-<ul>
-  <li>table testing2</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>Default aligned</th>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>First body part</td>
-      <td style="text-align: left">Second cell</td>
-      <td style="text-align: center">Third cell</td>
-      <td style="text-align: right">fourth cell</td>
-    </tr>
-    <tr>
-      <td>Second line</td>
-      <td style="text-align: left">foo</td>
-      <td style="text-align: center"><strong>strong</strong></td>
-      <td style="text-align: right">baz</td>
-    </tr>
-    <tr>
-      <td>Third line</td>
-      <td style="text-align: left">quux</td>
-      <td style="text-align: center">baz</td>
-      <td style="text-align: right">bar</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>Second body</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-    <tr>
-      <td>2 line</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>Footer row</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-  </tfoot>
-</table>
-
-<ul>
-  <li>table testing3</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>Default aligned</th>
-      <th style="text-align: left">Left aligned</th>
-      <th style="text-align: center">Center aligned</th>
-      <th style="text-align: right">Right aligned</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>First body part</td>
-      <td style="text-align: left">Second cell</td>
-      <td style="text-align: center">Third cell</td>
-      <td style="text-align: right">fourth cell</td>
-    </tr>
-    <tr>
-      <td>Second line</td>
-      <td style="text-align: left">foo</td>
-      <td style="text-align: center"><strong>strong</strong></td>
-      <td style="text-align: right">baz</td>
-    </tr>
-    <tr>
-      <td>Third line</td>
-      <td style="text-align: left">quux</td>
-      <td style="text-align: center">baz</td>
-      <td style="text-align: right">bar</td>
-    </tr>
-  </tbody>
-  <tbody>
-    <tr>
-      <td>Second body</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-    <tr>
-      <td>2 line</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td>Footer row</td>
-      <td style="text-align: left"> </td>
-      <td style="text-align: center"> </td>
-      <td style="text-align: right"> </td>
-    </tr>
-  </tfoot>
-</table>
-
-<ul>
-  <li>math testing</li>
-</ul>
-
-<script type="math/tex; mode=display">% &lt;![CDATA[
-
-\begin{align*}
-  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
-  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
-  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
-      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
-      \vdots & \ddots & \vdots \\
-      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
-    \end{array} \right)
-  \left( \begin{array}{c}
-      y_1 \\
-      \vdots \\
-      y_n
-    \end{array} \right)
-\end{align*}
- %]]&gt;</script>
+<p>add exec privilege and run</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-<span class="line-number">6</span>
-<span class="line-number">7</span>
-<span class="line-number">8</span>
-<span class="line-number">9</span>
-<span class="line-number">10</span>
-<span class="line-number">11</span>
-<span class="line-number">12</span>
-<span class="line-number">13</span>
-<span class="line-number">14</span>
-<span class="line-number">15</span>
-<span class="line-number">16</span>
-<span class="line-number">17</span>
-<span class="line-number">18</span>
-<span class="line-number">19</span>
-<span class="line-number">20</span>
-<span class="line-number">21</span>
-<span class="line-number">22</span>
-<span class="line-number">23</span>
-<span class="line-number">24</span>
-<span class="line-number">25</span>
-<span class="line-number">26</span>
-<span class="line-number">27</span>
-<span class="line-number">28</span>
-<span class="line-number">29</span>
-<span class="line-number">30</span>
-<span class="line-number">31</span>
-<span class="line-number">32</span>
-<span class="line-number">33</span>
-<span class="line-number">34</span>
-<span class="line-number">35</span>
-<span class="line-number">36</span>
-<span class="line-number">37</span>
-<span class="line-number">38</span>
-<span class="line-number">39</span>
-<span class="line-number">40</span>
-<span class="line-number">41</span>
-<span class="line-number">42</span>
-<span class="line-number">43</span>
-<span class="line-number">44</span>
-<span class="line-number">45</span>
-<span class="line-number">46</span>
-<span class="line-number">47</span>
-<span class="line-number">48</span>
-<span class="line-number">49</span>
-<span class="line-number">50</span>
-<span class="line-number">51</span>
-<span class="line-number">52</span>
-<span class="line-number">53</span>
-<span class="line-number">54</span>
-<span class="line-number">55</span>
-<span class="line-number">56</span>
-<span class="line-number">57</span>
-<span class="line-number">58</span>
-<span class="line-number">59</span>
-<span class="line-number">60</span>
-<span class="line-number">61</span>
-<span class="line-number">62</span>
-<span class="line-number">63</span>
-<span class="line-number">64</span>
-<span class="line-number">65</span>
-<span class="line-number">66</span>
-<span class="line-number">67</span>
-<span class="line-number">68</span>
-<span class="line-number">69</span>
-<span class="line-number">70</span>
-<span class="line-number">71</span>
-<span class="line-number">72</span>
-<span class="line-number">73</span>
-<span class="line-number">74</span>
-<span class="line-number">75</span>
-<span class="line-number">76</span>
-<span class="line-number">77</span>
-<span class="line-number">78</span>
-<span class="line-number">79</span>
-<span class="line-number">80</span>
-<span class="line-number">81</span>
-<span class="line-number">82</span>
-<span class="line-number">83</span>
-<span class="line-number">84</span>
-<span class="line-number">85</span>
-<span class="line-number">86</span>
-<span class="line-number">87</span>
-<span class="line-number">88</span>
-<span class="line-number">89</span>
-<span class="line-number">90</span>
-<span class="line-number">91</span>
-<span class="line-number">92</span>
-<span class="line-number">93</span>
-<span class="line-number">94</span>
-<span class="line-number">95</span>
-<span class="line-number">96</span>
-<span class="line-number">97</span>
-<span class="line-number">98</span>
-<span class="line-number">99</span>
-<span class="line-number">100</span>
-<span class="line-number">101</span>
-<span class="line-number">102</span>
-<span class="line-number">103</span>
-<span class="line-number">104</span>
-<span class="line-number">105</span>
-<span class="line-number">106</span>
-<span class="line-number">107</span>
-<span class="line-number">108</span>
-</pre></td><td class="code"><pre><code class="go"><span class="line"><span class="cm">/* -.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.</span>
-</span><span class="line">
-</span><span class="line"><span class="cm">* File Name : main.go</span>
-</span><span class="line">
-</span><span class="line"><span class="cm">* Purpose :</span>
-</span><span class="line">
-</span><span class="line"><span class="cm">* Creation Date : 02-26-2014</span>
-</span><span class="line">
-</span><span class="line"><span class="cm">* Last Modified : Wed 26 Feb 2014 01:30:21 AM UTC</span>
-</span><span class="line">
-</span><span class="line"><span class="cm">* Created By : Kiyor</span>
-</span><span class="line">
-</span><span class="line"><span class="cm">_._._._._._._._._._._._._._._._._._._._._.*/</span>
-</span><span class="line">
-</span><span class="line"><span class="kn">package</span> <span class="nx">main</span>
-</span><span class="line">
-</span><span class="line"><span class="kn">import</span> <span class="p">(</span>
-</span><span class="line">	<span class="s">&quot;fmt&quot;</span>
-</span><span class="line">	<span class="s">&quot;math/rand&quot;</span>
-</span><span class="line">	<span class="s">&quot;runtime&quot;</span>
-</span><span class="line">	<span class="s">&quot;sync&quot;</span>
-</span><span class="line">	<span class="s">&quot;time&quot;</span>
-</span><span class="line"><span class="p">)</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">type</span> <span class="nx">client</span> <span class="kd">struct</span> <span class="p">{</span>
-</span><span class="line">	<span class="nx">conn</span> <span class="kd">interface</span><span class="p">{}</span>
-</span><span class="line">	<span class="nx">loc</span>  <span class="o">*</span><span class="kt">bool</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">client</span><span class="p">)</span> <span class="nx">lock</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">	<span class="o">*</span><span class="nx">c</span><span class="p">.</span><span class="nx">loc</span> <span class="p">=</span> <span class="kc">true</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">client</span><span class="p">)</span> <span class="nx">unlock</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">	<span class="o">*</span><span class="nx">c</span><span class="p">.</span><span class="nx">loc</span> <span class="p">=</span> <span class="kc">false</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">type</span> <span class="nx">worker</span> <span class="kd">struct</span> <span class="p">{</span>
-</span><span class="line">	<span class="nx">sync</span><span class="p">.</span><span class="nx">WaitGroup</span>
-</span><span class="line">	<span class="nx">counter</span> <span class="o">*</span><span class="kt">int</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="o">*</span><span class="nx">worker</span><span class="p">)</span> <span class="nx">add</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">	<span class="nx">w</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-</span><span class="line">	<span class="o">*</span><span class="nx">w</span><span class="p">.</span><span class="nx">counter</span> <span class="o">+=</span> <span class="nx">n</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="p">(</span><span class="nx">w</span> <span class="o">*</span><span class="nx">worker</span><span class="p">)</span> <span class="nx">done</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">	<span class="o">*</span><span class="nx">w</span><span class="p">.</span><span class="nx">counter</span><span class="o">--</span>
-</span><span class="line">	<span class="nx">w</span><span class="p">.</span><span class="nx">Done</span><span class="p">()</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="nx">initClient</span><span class="p">()</span> <span class="nx">client</span> <span class="p">{</span>
-</span><span class="line">	<span class="kd">var</span> <span class="nx">conn</span> <span class="kd">interface</span><span class="p">{}</span>
-</span><span class="line">	<span class="k">return</span> <span class="nx">client</span><span class="p">{</span><span class="nx">conn</span><span class="p">,</span> <span class="nb">new</span><span class="p">(</span><span class="kt">bool</span><span class="p">)}</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="p">(</span><span class="nx">c</span> <span class="o">*</span><span class="nx">client</span><span class="p">)</span> <span class="nx">doSomething</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">index</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">w</span> <span class="nx">worker</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">	<span class="nx">r</span> <span class="o">:=</span> <span class="nx">random</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-</span><span class="line">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">random</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-</span><span class="line">		<span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">)</span>
-</span><span class="line">	<span class="p">}</span>
-</span><span class="line">	<span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;I&#39;m doing process[%d] in client[%d] and finish it using %d seconds, running %d\n&quot;</span><span class="p">,</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">r</span><span class="p">,</span> <span class="o">*</span><span class="nx">w</span><span class="p">.</span><span class="nx">counter</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-</span><span class="line">	<span class="nx">c</span><span class="p">.</span><span class="nx">unlock</span><span class="p">()</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="nx">random</span><span class="p">(</span><span class="nx">rg</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-</span><span class="line">	<span class="k">return</span> <span class="nx">rand</span><span class="p">.</span><span class="nx">Intn</span><span class="p">(</span><span class="nx">rg</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="nx">getClient</span><span class="p">(</span><span class="nx">clients</span> <span class="p">[]</span><span class="nx">client</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
-</span><span class="line">	<span class="k">for</span> <span class="p">{</span>
-</span><span class="line">		<span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">c</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">clients</span> <span class="p">{</span>
-</span><span class="line">			<span class="k">if</span> <span class="p">!</span><span class="o">*</span><span class="nx">c</span><span class="p">.</span><span class="nx">loc</span> <span class="p">{</span>
-</span><span class="line">				<span class="nx">c</span><span class="p">.</span><span class="nx">lock</span><span class="p">()</span>
-</span><span class="line">				<span class="k">return</span> <span class="nx">k</span>
-</span><span class="line">			<span class="p">}</span>
-</span><span class="line">		<span class="p">}</span>
-</span><span class="line">		<span class="nx">time</span><span class="p">.</span><span class="nx">Sleep</span><span class="p">(</span><span class="mi">1</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Millisecond</span><span class="p">)</span>
-</span><span class="line">	<span class="p">}</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">var</span> <span class="p">(</span>
-</span><span class="line">	<span class="nx">clients</span> <span class="p">[]</span><span class="nx">client</span>
-</span><span class="line">	<span class="nx">size</span>    <span class="p">=</span> <span class="mi">10</span>
-</span><span class="line">	<span class="nx">process</span> <span class="p">=</span> <span class="mi">100</span>
-</span><span class="line"><span class="p">)</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="nx">init</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">	<span class="nx">runtime</span><span class="p">.</span><span class="nx">GOMAXPROCS</span><span class="p">(</span><span class="nx">runtime</span><span class="p">.</span><span class="nx">NumCPU</span><span class="p">())</span>
-</span><span class="line">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">size</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-</span><span class="line">		<span class="nx">clients</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">clients</span><span class="p">,</span> <span class="nx">initClient</span><span class="p">())</span>
-</span><span class="line">	<span class="p">}</span>
-</span><span class="line"><span class="p">}</span>
-</span><span class="line">
-</span><span class="line"><span class="kd">func</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span>
-</span><span class="line">	<span class="kd">var</span> <span class="nx">w</span> <span class="nx">worker</span>
-</span><span class="line">	<span class="nx">w</span><span class="p">.</span><span class="nx">counter</span> <span class="p">=</span> <span class="nb">new</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
-</span><span class="line">	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">process</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
-</span><span class="line">		<span class="nx">w</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</span><span class="line">		<span class="nx">id</span> <span class="o">:=</span> <span class="nx">getClient</span><span class="p">(</span><span class="nx">clients</span><span class="p">)</span>
-</span><span class="line">		<span class="k">go</span> <span class="kd">func</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">i</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">w</span> <span class="o">*</span><span class="nx">worker</span><span class="p">)</span> <span class="p">{</span>
-</span><span class="line">			<span class="nx">clients</span><span class="p">[</span><span class="nx">id</span><span class="p">].</span><span class="nx">doSomething</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="o">*</span><span class="nx">w</span><span class="p">)</span>
-</span><span class="line">			<span class="nx">w</span><span class="p">.</span><span class="nx">done</span><span class="p">()</span>
-</span><span class="line">		<span class="p">}(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">w</span><span class="p">)</span>
-</span><span class="line">	<span class="p">}</span>
-</span><span class="line">	<span class="nx">w</span><span class="p">.</span><span class="nx">Wait</span><span class="p">()</span>
-</span><span class="line"><span class="p">}</span>
+</pre></td><td class="code"><pre><code class="bash"><span class="line">chmod u+x ensquid.sh
+</span><span class="line">./ensquid.sh 192.168.1.x
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p><code>/play nyan</code>
-/play nyan</p>
+<h3 id="why-i-do-that">Why I do that:</h3>
+<ul>
+  <li>Sucker game console not support use proxy everywhere, like WiiU cannot use proxy on Nico App</li>
+  <li>I have two layer proxy setup for JP website. And ad deny feature on my proxy. Why not using it!</li>
+</ul>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cracked a Japanese iOS Online game...]]></title>
+    <link href="http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot/"/>
+    <updated>2012-11-03T12:15:24-07:00</updated>
+    <id>http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot</id>
+    <content type="html"><![CDATA[<p>These day I was playing a new iOS game named Road to Dragons, ロード・トゥ・ドラゴン.</p>
 
-<script type="math/tex; mode=display">a^2 + b^2 = c^2</script>
+<p>Analysis the file system found all the cache data store form a plist file which is in <code>/Library/Preferences/jp.co.acquire.RTD.plist</code></p>
+
+<p>In my experience this kind of game will connect to server when out of battle. It will use local calculator to calculate the battle result. So it could be cracked during the battle.</p>
+
+<p>I found the plist file contain a line like <code>LOGINBONUS_PARAM</code></p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span><span class="nt">&quot;m_BonusLife&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusAttack&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusRecovery&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusEvoPoint&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusSoulPoint&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusCriticalRate&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusDropRate&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusQuestMoney&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusQuestExp&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusQuestFriendPoint&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That’s a strange line in this mass file, so I change all 0 to 100000 and try to get all the bonus.</p>
+
+<p>It worked…So this game company use client and clean text (Ok, only Xcode can open this plist file) to calculate the battle and even it is multiplication…</p>
+
+<p>Ok…That’s my first time to crack a online game…Maybe I will try more later…</p>
+
+<p><img src="http://kiyor.us/wp-content/uploads/2012/11/IMG_9087.png" alt="" /></p>
+
+<h3 id="update">Update</h3>
+<p>Pets soul could be changed too…</p>
+
+<p>Edit MDBS30 and change quest’s reward_soul value…</p>
+
+<p>What a suck game!</p>
 ]]></content>
   </entry>
   
