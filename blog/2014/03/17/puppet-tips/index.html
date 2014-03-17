@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Cracked a Japanese iOS Online game... - About System</title>
+  <title>puppet tips - About System</title>
   <meta name="author" content="kiyor">
 
   
-  <meta name="description" content="These day I was playing a new iOS game named Road to Dragons, ロード・トゥ・ドラゴン. Analysis the file system found all the cache data store form a plist file &hellip;">
+  <meta name="description" content="puppet with nginx artical link important permission, puppet:puppet puppet_config_dir/rack use templates is better for loadbalance, since you don’t &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot/">
+  <link rel="canonical" href="http://io.kiyor.us/blog/2014/03/17/puppet-tips/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">Cracked a Japanese iOS Online Game...</h1>
+      <h1 class="entry-title">Puppet Tips</h1>
     
     
       <p class="meta">
@@ -85,7 +85,7 @@
   
 
 
-<time datetime="2012-11-03T12:15:24-07:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2012</time>
+<time datetime="2014-03-17T12:39:18-07:00" pubdate data-updated="true">Mar 17<span>th</span>, 2014</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -94,32 +94,69 @@
   </header>
 
 
-<div class="entry-content"><p>These day I was playing a new iOS game named Road to Dragons, ロード・トゥ・ドラゴン.</p>
+<div class="entry-content"><ul>
+  <li>puppet with nginx artical <a href="http://z0mbix.github.io">link</a></li>
+  <li>important permission, <code>puppet:puppet puppet_config_dir/rack</code></li>
+  <li>use templates is better for loadbalance, since you don’t need setup host in config, but speed is lower than files</li>
+</ul>
 
-<p>Analysis the file system found all the cache data store form a plist file which is in <code>/Library/Preferences/jp.co.acquire.RTD.plist</code></p>
+<h6 id="example-nginx-conf">example nginx conf</h6>
 
-<p>In my experience this kind of game will connect to server when out of battle. It will use local calculator to calculate the battle result. So it could be cracked during the battle.</p>
-
-<p>I found the plist file contain a line like <code>LOGINBONUS_PARAM</code></p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="json"><span class="line"><span class="p">{</span><span class="nt">&quot;m_BonusLife&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusAttack&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusRecovery&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusEvoPoint&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusSoulPoint&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusCriticalRate&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusDropRate&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusQuestMoney&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusQuestExp&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="nt">&quot;m_BonusQuestFriendPoint&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">}</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">server {
+</span><span class="line">    listen          8140 ssl;
+</span><span class="line">    server_name     $hostname;
+</span><span class="line">
+</span><span class="line">    access_log      /usr/local/nginx/logs/puppet_access.log;
+</span><span class="line">    error_log       /usr/local/nginx/logs/puppet_error.log;
+</span><span class="line">
+</span><span class="line">    ssl_certificate             /var/lib/puppet/ssl/certs/$hostname.pem;
+</span><span class="line">    ssl_certificate_key         /var/lib/puppet/ssl/private_keys/$hostname.pem;
+</span><span class="line">    ssl_crl                     /var/lib/puppet/ssl/ca/ca_crl.pem;
+</span><span class="line">    ssl_client_certificate      /var/lib/puppet/ssl/certs/ca.pem;
+</span><span class="line">    ssl_ciphers                 SSLv2:-LOW:-EXPORT:RC4+RSA;
+</span><span class="line">    ssl_prefer_server_ciphers   on;
+</span><span class="line">    ssl_verify_client           optional;
+</span><span class="line">    ssl_verify_depth            1;
+</span><span class="line">    ssl_session_cache           shared:SSL:128m;
+</span><span class="line">    ssl_session_timeout         5m;
+</span><span class="line">
+</span><span class="line">    location / {
+</span><span class="line">        root                      /etc/puppet/rack/public;
+</span><span class="line">        passenger_base_uri        /;
+</span><span class="line">        passenger_enabled         on;
+</span><span class="line">        passenger_set_cgi_param   HTTP_X_CLIENT_DN $ssl_client_s_dn;
+</span><span class="line">        passenger_set_cgi_param   HTTP_X_CLIENT_VERIFY $ssl_client_verify;
+</span><span class="line">    }
+</span><span class="line">}
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>That’s a strange line in this mass file, so I change all 0 to 100000 and try to get all the bonus.</p>
-
-<p>It worked…So this game company use client and clean text (Ok, only Xcode can open this plist file) to calculate the battle and even it is multiplication…</p>
-
-<p>Ok…That’s my first time to crack a online game…Maybe I will try more later…</p>
-
-<p><img src="http://kiyor.us/wp-content/uploads/2012/11/IMG_9087.png" alt="" /></p>
-
-<h3 id="update">Update</h3>
-<p>Pets soul could be changed too…</p>
-
-<p>Edit MDBS30 and change quest’s reward_soul value…</p>
-
-<p>What a suck game!</p>
 </div>
 
 
@@ -142,12 +179,12 @@
   
 
 
-<time datetime="2012-11-03T12:15:24-07:00" pubdate data-updated="true">Nov 3<span>rd</span>, 2012</time>
+<time datetime="2014-03-17T12:39:18-07:00" pubdate data-updated="true">Mar 17<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/hack/'>Hack</a>
+    <a class='category' href='/blog/categories/linux/'>Linux</a>, <a class='category' href='/blog/categories/server/'>Server</a>, <a class='category' href='/blog/categories/puppet/'>puppet</a>
   
 </span>
 
@@ -156,7 +193,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot/" data-via="" data-counturl="http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://io.kiyor.us/blog/2014/03/17/puppet-tips/" data-via="" data-counturl="http://io.kiyor.us/blog/2014/03/17/puppet-tips/" >Tweet</a>
   
   
   
@@ -165,10 +202,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/08/19/control-different-region-player-connect-different-server/" title="Previous Post: Control Different Region Player Connect Different Server">&laquo; Control Different Region Player Connect Different Server</a>
+        <a class="basic-alignment left" href="/blog/2013/01/19/force-local-user-use-proxy/" title="Previous Post: Force local user use proxy">&laquo; Force local user use proxy</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2013/01/19/force-local-user-use-proxy/" title="Next Post: Force local user use proxy">Force local user use proxy &raquo;</a>
       
     </p>
   </footer>
@@ -263,8 +298,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot/';
-        var disqus_url = 'http://io.kiyor.us/blog/2012/11/03/cracked-a-japanese-ios-online-game-dot-dot-dot/';
+        var disqus_identifier = 'http://io.kiyor.us/blog/2014/03/17/puppet-tips/';
+        var disqus_url = 'http://io.kiyor.us/blog/2014/03/17/puppet-tips/';
         var disqus_script = 'embed.js';
       
     (function () {

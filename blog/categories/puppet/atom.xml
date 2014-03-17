@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: puppet | About System]]></title>
+  <link href="http://io.kiyor.us/blog/categories/puppet/atom.xml" rel="self"/>
+  <link href="http://io.kiyor.us/"/>
+  <updated>2014-03-17T12:57:14-07:00</updated>
+  <id>http://io.kiyor.us/</id>
+  <author>
+    <name><![CDATA[kiyor]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[puppet tips]]></title>
+    <link href="http://io.kiyor.us/blog/2014/03/17/puppet-tips/"/>
+    <updated>2014-03-17T12:39:18-07:00</updated>
+    <id>http://io.kiyor.us/blog/2014/03/17/puppet-tips</id>
+    <content type="html"><![CDATA[<ul>
+  <li>puppet with nginx artical <a href="http://z0mbix.github.io">link</a></li>
+  <li>important permission, <code>puppet:puppet puppet_config_dir/rack</code></li>
+  <li>use templates is better for loadbalance, since you don’t need setup host in config, but speed is lower than files</li>
+</ul>
+
+<h6 id="example-nginx-conf">example nginx conf</h6>
+
+<p>```</p>
+
+<p>server {
+    listen          8140 ssl;
+    server_name     $hostname;</p>
+
+<pre><code>access_log      /usr/local/nginx/logs/puppet_access.log;
+error_log       /usr/local/nginx/logs/puppet_error.log;
+
+ssl_certificate             /var/lib/puppet/ssl/certs/$hostname.pem;
+ssl_certificate_key         /var/lib/puppet/ssl/private_keys/$hostname.pem;
+ssl_crl                     /var/lib/puppet/ssl/ca/ca_crl.pem;
+ssl_client_certificate      /var/lib/puppet/ssl/certs/ca.pem;
+ssl_ciphers                 SSLv2:-LOW:-EXPORT:RC4+RSA;
+ssl_prefer_server_ciphers   on;
+ssl_verify_client           optional;
+ssl_verify_depth            1;
+ssl_session_cache           shared:SSL:128m;
+ssl_session_timeout         5m;
+
+location / {
+    root                      /etc/puppet/rack/public;
+    passenger_base_uri        /;
+    passenger_enabled         on;
+    passenger_set_cgi_param   HTTP_X_CLIENT_DN $ssl_client_s_dn;
+    passenger_set_cgi_param   HTTP_X_CLIENT_VERIFY $ssl_client_verify;
+} }
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>

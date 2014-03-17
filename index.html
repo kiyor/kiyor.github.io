@@ -9,8 +9,7 @@
   <meta name="author" content="kiyor">
 
   
-  <meta name="description" content="Setup local squid.conf with http_port 45678 transparent ssh to your DD-WRT router and run 1
-iptables -I FORWARD -p tcp -d 192.168.1.2 –dport 45678 -j &hellip;">
+  <meta name="description" content="puppet with nginx artical link important permission, puppet:puppet puppet_config_dir/rack use templates is better for loadbalance, since you don’t &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -67,6 +66,106 @@ iptables -I FORWARD -p tcp -d 192.168.1.2 –dport 45678 -j &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/03/17/puppet-tips/">Puppet Tips</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-17T12:39:18-07:00" pubdate data-updated="true">Mar 17<span>th</span>, 2014</time>
+        
+         | <a href="/blog/2014/03/17/puppet-tips/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><ul>
+  <li>puppet with nginx artical <a href="http://z0mbix.github.io">link</a></li>
+  <li>important permission, <code>puppet:puppet puppet_config_dir/rack</code></li>
+  <li>use templates is better for loadbalance, since you don’t need setup host in config, but speed is lower than files</li>
+</ul>
+
+<h6 id="example-nginx-conf">example nginx conf</h6>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
+<span class="line-number">7</span>
+<span class="line-number">8</span>
+<span class="line-number">9</span>
+<span class="line-number">10</span>
+<span class="line-number">11</span>
+<span class="line-number">12</span>
+<span class="line-number">13</span>
+<span class="line-number">14</span>
+<span class="line-number">15</span>
+<span class="line-number">16</span>
+<span class="line-number">17</span>
+<span class="line-number">18</span>
+<span class="line-number">19</span>
+<span class="line-number">20</span>
+<span class="line-number">21</span>
+<span class="line-number">22</span>
+<span class="line-number">23</span>
+<span class="line-number">24</span>
+<span class="line-number">25</span>
+<span class="line-number">26</span>
+<span class="line-number">27</span>
+</pre></td><td class="code"><pre><code class=""><span class="line">
+</span><span class="line">server {
+</span><span class="line">    listen          8140 ssl;
+</span><span class="line">    server_name     $hostname;
+</span><span class="line">
+</span><span class="line">    access_log      /usr/local/nginx/logs/puppet_access.log;
+</span><span class="line">    error_log       /usr/local/nginx/logs/puppet_error.log;
+</span><span class="line">
+</span><span class="line">    ssl_certificate             /var/lib/puppet/ssl/certs/$hostname.pem;
+</span><span class="line">    ssl_certificate_key         /var/lib/puppet/ssl/private_keys/$hostname.pem;
+</span><span class="line">    ssl_crl                     /var/lib/puppet/ssl/ca/ca_crl.pem;
+</span><span class="line">    ssl_client_certificate      /var/lib/puppet/ssl/certs/ca.pem;
+</span><span class="line">    ssl_ciphers                 SSLv2:-LOW:-EXPORT:RC4+RSA;
+</span><span class="line">    ssl_prefer_server_ciphers   on;
+</span><span class="line">    ssl_verify_client           optional;
+</span><span class="line">    ssl_verify_depth            1;
+</span><span class="line">    ssl_session_cache           shared:SSL:128m;
+</span><span class="line">    ssl_session_timeout         5m;
+</span><span class="line">
+</span><span class="line">    location / {
+</span><span class="line">        root                      /etc/puppet/rack/public;
+</span><span class="line">        passenger_base_uri        /;
+</span><span class="line">        passenger_enabled         on;
+</span><span class="line">        passenger_set_cgi_param   HTTP_X_CLIENT_DN $ssl_client_s_dn;
+</span><span class="line">        passenger_set_cgi_param   HTTP_X_CLIENT_VERIFY $ssl_client_verify;
+</span><span class="line">    }
+</span><span class="line">}
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -720,6 +819,10 @@ So apps I use to make me think Mac is awesome.</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2014/03/17/puppet-tips/">puppet tips</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/19/force-local-user-use-proxy/">Force local user use proxy</a>
       </li>
     
@@ -733,10 +836,6 @@ So apps I use to make me think Mac is awesome.</p>
     
       <li class="post">
         <a href="/blog/2012/08/07/how-to-use-ramdisk-in-your-mac/">How to Use Ramdisk in Your Mac</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/08/07/share-my-macs-apps-list/">Share my Mac’s Apps List</a>
       </li>
     
   </ul>
