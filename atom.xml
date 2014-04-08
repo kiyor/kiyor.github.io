@@ -4,7 +4,7 @@
   <title><![CDATA[About System]]></title>
   <link href="http://io.kiyor.us/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-04-08T14:58:56-07:00</updated>
+  <updated>2014-04-08T14:59:40-07:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[how to make a simple audio/video streaming server]]></title>
-    <link href="http://io.kiyor.us/blog/2014/03/17/how-to-make-a-simple-audio%2Cvideo-streaming-server/"/>
+    <link href="http://io.kiyor.us/blog/2014/03/17/how-to-make-a-simple-audio-video-streaming-server/"/>
     <updated>2014-03-17T18:23:58-07:00</updated>
-    <id>http://io.kiyor.us/blog/2014/03/17/how-to-make-a-simple-audio,video-streaming-server</id>
+    <id>http://io.kiyor.us/blog/2014/03/17/how-to-make-a-simple-audio-video-streaming-server</id>
     <content type="html"><![CDATA[<ul>
   <li>
     <h2 id="why-need-it">Why need it</h2>
