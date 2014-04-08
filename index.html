@@ -126,9 +126,9 @@
 
 <h3 id="step-by-step-on-centos">Step by Step on CentOS</h3>
 
-<ol>
+<ul>
   <li>Install <a href="http://www.transmissionbt.com">transmission</a> required lib on VPS</li>
-</ol>
+</ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -152,9 +152,10 @@
 </span><span class="line">cd libevent-2.0.21-stable
 </span><span class="line">./configure
 </span><span class="line">make &amp;&amp; make install</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ol>
+
+<ul>
   <li>Install <a href="http://www.transmissionbt.com">transmission</a></li>
-</ol>
+</ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -170,9 +171,10 @@
 </span><span class="line">export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 </span><span class="line">./configure
 </span><span class="line">make &amp;&amp; make install</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ol>
+
+<ul>
   <li>Setup http mount point</li>
-</ol>
+</ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">useradd nginx</span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -225,9 +227,9 @@
 </span><span class="line">	}
 </span><span class="line">}</span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<ol>
+<ul>
   <li>Init transmission config</li>
-</ol>
+</ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -246,9 +248,9 @@
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 <p>transmission smart enough if you using text password, it will convert to hash automatically</p>
 
-<ol>
+<ul>
   <li>Install <a href="http://golang.org/doc/install">Golang</a> and my <a href="https://github.com/kiyor/playlist">Playlist Generator</a></li>
-</ol>
+</ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
@@ -263,20 +265,21 @@
 </span><span class="line">git clone git@github.com:johndyer/mediaelement.git
 </span><span class="line">git clone git@github.com:kiyor/mep-feature-playlist.git
 </span></code></pre></td></tr></table></div></figure></notextile></div>
-<ol>
+<ul>
   <li>Download or upload something to you html folder</li>
-</ol>
+</ul>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">su - nginx
 </span><span class="line">transmission-daemon</span></code></pre></td></tr></table></div></figure></notextile></div>
-<ul>
+
+<ol>
   <li>go to hostname:9091, upload torrent or magnet link and download to your html/bt</li>
   <li>after downloaded, try access your hostname/bt</li>
   <li>run playlist -dir ‘your html dir’, it would generate a file call player</li>
   <li>access your player in all your device</li>
-</ul>
+</ol>
 
 <h4 id="note">note</h4>
 
