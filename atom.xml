@@ -4,7 +4,7 @@
   <title><![CDATA[About System]]></title>
   <link href="http://io.kiyor.us/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-04-08T14:49:16-07:00</updated>
+  <updated>2014-04-08T14:55:16-07:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -173,8 +173,16 @@
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+<span class="line-number">6</span>
 </pre></td><td class="code"><pre><code class=""><span class="line">go get github.com/kiyor/playlist
 </span><span class="line">go install github.com/kiyor/playlist
+</span><span class="line">cp templates html/ #cp templates which I'm my repo to you html directory
+</span><span class="line">cd html
+</span><span class="line">git clone git@github.com:johndyer/mediaelement.git
+</span><span class="line">git clone git@github.com:kiyor/mep-feature-playlist.git
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 <ol>
   <li>Download or upload something to you html folder</li>
