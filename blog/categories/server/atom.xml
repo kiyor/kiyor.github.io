@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Server | About System]]></title>
   <link href="http://io.kiyor.us/blog/categories/server/atom.xml" rel="self"/>
   <link href="http://io.kiyor.us/"/>
-  <updated>2014-04-08T14:55:16-07:00</updated>
+  <updated>2014-04-08T14:57:39-07:00</updated>
   <id>http://io.kiyor.us/</id>
   <author>
     <name><![CDATA[kiyor]]></name>
@@ -134,7 +134,7 @@ transmission smart enough if you using text password, it will convert to hash au
 <p>```
 go get github.com/kiyor/playlist
 go install github.com/kiyor/playlist
-cp templates html/ #cp templates which I’m my repo to you html directory
+cp -r templates html/ #cp my repo’s templates file to you html directory ( html/templates/*.tmpl )
 cd html
 git clone git@github.com:johndyer/mediaelement.git
 git clone git@github.com:kiyor/mep-feature-playlist.git</p>
